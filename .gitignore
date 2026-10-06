@@ -1,0 +1,9 @@
+# WordPress conversion notes
+wordpress-conversion-guide.txt
+
+# Local editor and assistant configuration
+.claude/
+.vscode/
+
+# macOS filesystem metadata
+.DS_Store
