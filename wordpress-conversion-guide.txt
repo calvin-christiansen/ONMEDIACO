@@ -1,0 +1,396 @@
+WordPress Conversion Process Overview
+
+================================================================================
+Phase 1: Preparation & Setup
+================================================================================
+
+1. Analyze Current Structure
+- Review all HTML files (index.html, about.html, contact.html, gallery.html)
+- Identify common elements (header, footer, navigation)
+- Document custom CSS classes and JavaScript dependencies
+- Catalog all images and their usage
+
+2. Set Up WordPress Environment
+- Install WordPress locally or on hosting
+- Access wp-content/themes/ directory
+- Create new theme folder (e.g., "onmediaco-theme")
+
+================================================================================
+Phase 2: Create WordPress Theme Structure
+================================================================================
+
+3. Required Theme Files
+onmediaco-theme/
+├── style.css (theme stylesheet with header comment)
+├── index.php (main template)
+├── header.php (site header)
+├── footer.php (site footer)
+├── functions.php (theme functions)
+├── page.php (page template)
+└── screenshot.png (theme thumbnail)
+
+4. Convert HTML Structure to PHP Templates
+
+header.php:
+- Take everything from <!DOCTYPE html> through opening <body> tag and navigation from your HTML files
+- Replace static paths with WordPress functions:
+  - <link href="style.css"> → <link href="<?php echo get_stylesheet_uri(); ?>">
+  - Replace page titles with <?php wp_title(); ?>
+- Add <?php wp_head(); ?> before </head>
+- Include navigation using <?php wp_nav_menu(); ?>
+
+footer.php:
+- Extract footer content from your HTML files
+- Add <?php wp_footer(); ?> before </body>
+- Close HTML structure
+
+index.php:
+- Include header: <?php get_header(); ?>
+- Convert main content area with WordPress loop
+- Include footer: <?php get_footer(); ?>
+
+page.php:
+- Similar to index.php but for static pages
+- Use WordPress loop to display page content
+
+5. Create style.css with Theme Header
+/*
+Theme Name: ONMEDIACO
+Theme URI: http://example.com
+Author: Your Name
+Description: Custom WordPress theme for ONMEDIACO
+Version: 1.0
+*/
+
+/* Then paste your existing CSS below */
+
+================================================================================
+Phase 3: Handle Assets (CSS, JS, Images)
+================================================================================
+
+6. Enqueue CSS and JavaScript Properly
+
+functions.php setup:
+- Create function to enqueue styles and scripts
+- Use wp_enqueue_style() for CSS
+- Use wp_enqueue_script() for JavaScript
+- Register navigation menus
+- Add theme support features (post thumbnails, title tag, etc.)
+
+7. Organize Assets in Theme
+onmediaco-theme/
+├── css/
+│   └── style.css (or keep as style.css in root)
+├── js/
+│   └── script.js
+├── images/ (copy your images folder here)
+└── [other theme files]
+
+8. Update All Image Paths
+- Replace relative paths like images/photo.jpg
+- With WordPress path: <?php echo get_template_directory_uri(); ?>/images/photo.jpg
+- Or upload to Media Library and use WordPress media functions
+
+================================================================================
+Phase 3.5: DETAILED MEDIA TRANSFER (Images & Videos)
+================================================================================
+
+9. Inventory Your Media
+- List all images in your images/ folder
+- Note image dimensions, file sizes, and formats (JPG, PNG, GIF, WebP, SVG)
+- Identify any videos in your project
+- Document where each media file is used (which HTML file, CSS background, etc.)
+- Check for any images referenced in CSS (background images, etc.)
+
+10. Choose Your Image Transfer Strategy
+
+OPTION A: Theme Folder Method (for template/design images)
+Best for: Logos, icons, background images, design elements that are part of theme
+
+Steps:
+- Create images/ folder in your theme directory
+- Copy all images from current images/ folder to theme/images/
+- Update all image references in PHP files:
+  Old: <img src="images/logo.png">
+  New: <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png">
+- Update CSS background images:
+  Old: background-image: url('../images/bg.jpg');
+  New: background-image: url('<?php echo get_template_directory_uri(); ?>/images/bg.jpg');
+
+Pros:
+- Images stay with theme
+- Portable when moving theme
+- Version controlled with theme
+
+Cons:
+- Not editable through WordPress admin
+- Not searchable in Media Library
+- Harder for non-technical users to update
+
+OPTION B: Media Library Method (for content images)
+Best for: Gallery images, content photos, featured images, any images users might update
+
+Steps:
+- Go to WordPress admin → Media → Add New
+- Drag and drop images or use bulk uploader
+- Alternative: Use FTP to upload to wp-content/uploads/ (maintains organization)
+- Use plugin like "Enable Media Replace" for easy updates later
+- Insert images into pages using WordPress editor or get URLs from Media Library
+
+Pros:
+- Easy to manage through WordPress admin
+- Can edit images in WordPress
+- Generates multiple sizes automatically
+- Searchable and organizable
+- Can add alt text, captions, descriptions
+
+Cons:
+- Not included in theme backup
+- URLs change if you migrate sites (use plugin like "Better Search Replace")
+
+OPTION C: Hybrid Method (RECOMMENDED)
+- Theme images (logos, icons, UI elements) → Theme folder
+- Content images (photos, gallery) → Media Library
+
+11. Image Optimization Before Upload
+
+Before transferring, optimize images:
+- Resize large images (most websites don't need images over 2000px wide)
+- Compress using tools:
+  * TinyPNG or TinyJPG (online)
+  * ImageOptim (Mac)
+  * RIOT (Windows)
+  * Squoosh (web-based)
+- Convert to WebP format for better performance (optional, WordPress 5.8+ supports WebP)
+- Keep originals as backup
+
+WordPress Optimization Plugins (install after upload):
+- Smush (free, automatic compression)
+- ShortPixel (free tier available)
+- Imagify (free tier available)
+- EWWW Image Optimizer
+
+12. Bulk Image Upload Methods
+
+Method 1: WordPress Admin Interface
+- Media → Add New → Select Files
+- Can select multiple files at once
+- Limited by server upload limits (usually 2MB-64MB per file)
+
+Method 2: FTP/File Manager
+- Upload directly to wp-content/uploads/YYYY/MM/ folder
+- Maintains file structure
+- No file size limits
+- Must import to Media Library using plugin like "Media from FTP"
+
+Method 3: Import Plugin
+- Install "Auto Upload Images" to grab images from content
+- Use "Media Library Assistant" for bulk organization
+
+13. VIDEO TRANSFER - Complete Guide
+
+IMPORTANT: WordPress has limitations for video hosting
+
+Method 1: Upload to Media Library (Small Videos Only)
+Limitations:
+- Default upload limit: 2MB-128MB (depends on hosting)
+- Increases server storage costs
+- Can slow down site
+- Not ideal for multiple or long videos
+
+Steps:
+- Check upload limit: Media → Add New (shows max upload size)
+- Increase limit if needed (edit php.ini or .htaccess)
+- Upload: Media → Add New → select video file
+- Supported formats: MP4, M4V, MOV, WMV, AVI, MPG, OGV, 3GP, 3G2, WebM
+- Best format: MP4 (H.264) - most compatible
+
+Insert video in page:
+- Use WordPress video block
+- Or HTML5: <video src="<?php echo wp_get_attachment_url(123); ?>" controls></video>
+
+Method 2: External Video Hosting (RECOMMENDED)
+
+YouTube Hosting:
+- Free unlimited storage
+- Create YouTube channel
+- Upload videos
+- Set privacy: Public, Unlisted, or Private
+- Copy embed code or use URL
+- Paste into WordPress (auto-embeds)
+
+Vimeo Hosting:
+- Free: 500MB/week, 5GB total
+- Paid plans for more
+- Better player customization
+- No ads on paid plans
+- Professional appearance
+- Use Vimeo URL or embed code in WordPress
+
+Other Options:
+- Wistia (business-focused, paid)
+- Bunny.net (CDN with video hosting)
+- AWS S3 + CloudFront (for advanced users)
+
+Method 3: Video Background (Hero Sections)
+If using video as background:
+- Keep under 5MB if possible
+- Use MP4 format
+- Host in theme: wp-content/themes/your-theme/videos/
+- Reference: <?php echo get_template_directory_uri(); ?>/videos/bg-video.mp4
+- Provide poster image for mobile (videos often disabled on mobile)
+
+14. Update HTML Video/Image References
+
+For images in HTML:
+Old: <img src="images/photo.jpg" alt="Description">
+New (Media Library): <img src="<?php echo wp_get_attachment_url(IMAGE_ID); ?>" alt="Description">
+New (Theme): <img src="<?php echo get_template_directory_uri(); ?>/images/photo.jpg" alt="Description">
+
+For videos in HTML:
+Old: <video src="videos/promo.mp4" controls></video>
+New (Media Library): <video src="<?php echo wp_get_attachment_url(VIDEO_ID); ?>" controls></video>
+New (YouTube): [Just paste YouTube URL, WordPress auto-embeds]
+New (Theme): <video src="<?php echo get_template_directory_uri(); ?>/videos/promo.mp4" controls></video>
+
+For CSS background images:
+Old: background-image: url('images/hero-bg.jpg');
+New: background-image: url('<?php echo get_template_directory_uri(); ?>/images/hero-bg.jpg');
+
+15. Add Alt Text and Metadata
+
+For accessibility and SEO:
+- Go to Media Library → click image
+- Add Alt Text (describe image for screen readers)
+- Add Title (appears on hover)
+- Add Caption (displays below image)
+- Add Description (for internal organization)
+
+16. Organize Media Library
+
+- Create folders using plugin like "FileBird" or "Real Media Library"
+- Name files descriptively before upload (logo-onmediaco.png vs img001.png)
+- Use consistent naming convention
+- Tag images for easy searching
+
+17. Handle Special Image Cases
+
+SVG Images:
+- WordPress blocks SVG uploads by default (security)
+- Install "SVG Support" plugin to enable
+- Or add code to functions.php to allow SVG
+
+Retina/High-DPI Images:
+- Upload 2x size images
+- WordPress generates multiple sizes automatically
+- Use plugins like "WP Retina 2x" for retina support
+
+Favicon/Site Icon:
+- Upload via Appearance → Customize → Site Identity → Site Icon
+- Use square image, 512x512px minimum
+- WordPress generates all needed sizes
+
+18. Testing Media After Transfer
+
+- Check all pages where images appear
+- Test image loading speed
+- Verify videos play correctly
+- Test on mobile devices
+- Check broken image links (use Broken Link Checker plugin)
+- Verify alt text appears when hovering
+- Test lazy loading (images load as user scrolls)
+
+19. Media Performance Optimization
+
+After transfer:
+- Install lazy loading plugin (or use native WordPress lazy loading)
+- Enable CDN for faster global delivery (Cloudflare, BunnyCDN)
+- Use WebP format where possible
+- Implement responsive images (srcset)
+- Install caching plugin (WP Rocket, W3 Total Cache)
+
+================================================================================
+Phase 4: Convert Content
+================================================================================
+
+20. Create WordPress Pages
+- In WordPress admin, create pages for each HTML file:
+  - Home (set as front page in Settings → Reading)
+  - About
+  - Contact
+  - Gallery
+
+21. Migrate Content from HTML to WordPress
+- Copy content from HTML files
+- Paste into WordPress page editor
+- Clean up any inline styles or deprecated HTML
+- Use WordPress blocks/Gutenberg or classic editor
+
+22. Handle Special Features
+
+For Contact Form:
+- Install Contact Form 7 or WPForms plugin
+- Replace HTML form with plugin shortcode
+
+For Gallery:
+- Upload images to Media Library
+- Use WordPress gallery block or plugin like NextGEN Gallery
+- Or create custom gallery template
+
+================================================================================
+Phase 5: WordPress-Specific Enhancements
+================================================================================
+
+23. Add WordPress Functionality
+- Register custom menus in functions.php
+- Add widget areas (sidebars) if needed
+- Enable featured images support
+- Set up custom post types if needed
+
+24. Update Navigation
+- Convert static navigation links to dynamic WordPress menu
+- Use wp_nav_menu() in header.php
+- Create menu in WordPress admin (Appearance → Menus)
+
+25. Implement WordPress Loop
+Replace static content with dynamic queries:
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+    <?php the_content(); ?>
+<?php endwhile; endif; ?>
+
+================================================================================
+Phase 6: Testing & Optimization
+================================================================================
+
+26. Test Everything
+- Check all pages display correctly
+- Verify navigation works
+- Test forms and interactive elements
+- Ensure responsive design still works
+- Check all images load properly
+
+27. Optimize
+- Minify CSS/JS if needed
+- Optimize images
+- Add caching plugin
+- Install SEO plugin (Yoast/Rank Math)
+
+================================================================================
+Key Conversion Points
+================================================================================
+
+Static HTML → WordPress PHP:
+- <a href="about.html"> → <a href="<?php echo get_permalink(get_page_by_path('about')); ?>">
+- Hard-coded titles → <?php the_title(); ?>
+- Static content → <?php the_content(); ?>
+- Image paths → <?php echo get_template_directory_uri(); ?>/images/...
+
+CSS Considerations:
+- Keep existing CSS mostly intact
+- May need to add WordPress-specific classes
+- Consider WordPress default classes for navigation, posts, etc.
+
+JavaScript:
+- Enqueue through functions.php, not directly in HTML
+- Check jQuery compatibility (WordPress includes jQuery in no-conflict mode)
+- Use jQuery instead of $ or wrap in jQuery(document).ready()

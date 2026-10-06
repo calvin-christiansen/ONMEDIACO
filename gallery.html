@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - ON Media Co</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 
+    ========================================
+    HEADER / NAVIGATION
+    ========================================
+    -->
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="ON Media Co Logo" class="logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- 
+    ========================================
+    PAGE HERO
+    ========================================
+    -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Gallery</h1>
+            <p class="page-subtitle">Our cinematic work</p>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    FILMS SECTION
+    ========================================
+    -->
+    <section class="gallery-films section">
+        <div class="container">
+            <h2 class="gallery-subtitle">Films</h2>
+            
+            <div class="video-grid video-grid-full">
+                <!-- Video item 1 -->
+                <div class="video-item">
+                    <video class="video-placeholder" controls>
+                        <source src="images/couple1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 1</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+                
+                <!-- Video item 2 -->
+                <div class="video-item">
+                    <video class="video-placeholder" controls>
+                        <source src="images/couple2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 2</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+                
+                <!-- Video item 3 -->
+                <div class="video-item">
+                    <video class="video-placeholder" controls>
+                        <source src="images/couple3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 3</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    STILLS SECTION
+    ========================================
+    -->
+    <section class="gallery-stills section">
+        <div class="container">
+            <h2 class="gallery-subtitle">Stills from our films</h2>
+            
+            <div class="video-grid video-grid-full">
+                <!-- Still 1 -->
+                <div class="video-item">
+                    <img src="images/couple1-still.png" alt="Couple 1 Still" class="video-placeholder">
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 1</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+                
+                <!-- Still 2 -->
+                <div class="video-item">
+                    <img src="images/couple2-still.png" alt="Couple 2 Still" class="video-placeholder">
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 2</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+                
+                <!-- Still 3 -->
+                <div class="video-item">
+                    <img src="images/couple3-still.png" alt="Couple 3 Still" class="video-placeholder">
+                    <div class="video-info">
+                        <h3 class="video-title">Couple 3</h3>
+                        <p class="video-category">Wedding Film</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    CTA SECTION
+    ========================================
+    -->
+    <section class="cta-section section">
+        <div class="container text-center">
+            <h2 class="section-title">Let's Create Your Film</h2>
+            <p class="section-description text-center">
+                Ready to preserve your story in cinematic form?
+            </p>
+            <a href="contact.html" class="btn btn-primary">Start a Project</a>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    FOOTER
+    ========================================
+    -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="ON Media Co" class="logo-img">
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram">Instagram</a>
+                    <a href="#" class="social-link" aria-label="Vimeo">Vimeo</a>
+                    <a href="#" class="social-link" aria-label="YouTube">YouTube</a>
+                </div>
+                <p class="copyright">&copy; 2024 ON Media Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

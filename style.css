@@ -1,0 +1,893 @@
+/*
+========================================
+ON MEDIA CO - ELEGANT WEDDING VIDEOGRAPHY
+Neutral palette: white, light beige, dark grey, muted sage
+Modern and simple with calligraphic accents
+========================================
+*/
+
+/* 
+========================================
+COLOR PALETTE
+========================================
+*/
+:root {
+    --color-white: #ffffff;
+    --color-beige: #f5f1ed;
+    --color-dark-grey: #3a3a3a;
+    --color-light-grey: #8d8d8d;
+    --color-sage: #8b9d83;
+    --color-text: #2a2a2a;
+    --color-light-text: #666666;
+    --color-border: #e8e4df;
+}
+
+/* 
+========================================
+CSS RESET & BASE STYLES
+========================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+
+/* Calligraphic accent elements */
+.calligraphic {
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--color-sage);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 
+========================================
+LAYOUT UTILITIES
+========================================
+*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-dark {
+    background-color: var(--color-beige);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* 
+========================================
+HEADER & NAVIGATION
+Fixed header with transparent background
+========================================
+*/
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.98);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.main-header.scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logo-img {
+    height: 100%;
+    width: auto;
+}
+
+/* Navigation menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-sage);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-sage);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile toggle button */
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* 
+========================================
+HERO SECTION
+Full-screen hero with minimal design
+========================================
+*/
+.hero {
+    height: 56.23vw;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/hero-bg.png') center center no-repeat;
+    background-size: cover;
+    background-position: center center;
+    z-index: -1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 350;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 200;
+    color: var(--color-text);
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+}
+
+/* 
+========================================
+PAGE HERO (Interior pages)
+Smaller hero for non-home pages
+========================================
+*/
+.page-hero {
+    padding: 150px 0 80px;
+    background-color: var(--color-beige);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: var(--color-light-text);
+    letter-spacing: 0.5px;
+}
+
+/* 
+========================================
+BUTTONS
+Minimal button styles
+========================================
+*/
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-sage);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-text);
+    color: var(--color-white);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* 
+========================================
+SECTION TITLES & DESCRIPTIONS
+========================================
+*/
+.section-title {
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.gallery-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.section-description {
+    font-size: 16px;
+    color: var(--color-light-text);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    max-width: 700px;
+}
+
+.text-center.section-description {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* 
+========================================
+ABOUT SECTION
+Two-column layout with image and text
+========================================
+*/
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image {
+    width: 100%;
+}
+
+.about-placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 
+========================================
+VIDEO/PORTFOLIO GRID
+Grid layout for video thumbnails
+========================================
+*/
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.video-grid-full {
+    gap: 40px;
+}
+
+.video-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+}
+
+.video-placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.video-info {
+    text-align: center;
+}
+
+.video-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 5px;
+}
+
+.video-category {
+    font-size: 14px;
+    color: var(--color-light-text);
+    letter-spacing: 0.5px;
+}
+
+/* 
+========================================
+TESTIMONIALS
+Grid of client testimonials
+========================================
+*/
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.testimonial-card {
+    padding: 40px 30px;
+    background-color: var(--color-white);
+    text-align: center;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--color-light-text);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    font-size: 14px;
+    color: var(--color-text);
+    letter-spacing: 0.5px;
+}
+
+/* 
+========================================
+PHILOSOPHY SECTION (About page)
+========================================
+*/
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.philosophy-item {
+    text-align: center;
+}
+
+.philosophy-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.philosophy-text {
+    font-size: 15px;
+    color: var(--color-light-text);
+    line-height: 1.8;
+}
+
+/* 
+========================================
+SERVICES SECTION (Product page)
+========================================
+*/
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.service-item {
+    padding: 40px;
+    background-color: var(--color-white);
+}
+
+.service-title {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.service-text {
+    font-size: 15px;
+    color: var(--color-light-text);
+    line-height: 1.8;
+}
+
+/* 
+========================================
+CTA SECTION
+Call-to-action banner
+========================================
+*/
+.cta-section {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
+}
+
+.cta-section .section-title {
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.cta-section .section-description {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+.cta-section .btn {
+    margin-top: 20px;
+}
+
+/* 
+========================================
+CONTACT SECTION
+========================================
+*/
+.contact-intro {
+    margin-bottom: 60px;
+}
+
+.contact-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.contact-form-wrapper {
+    background-color: var(--color-beige);
+    padding: 50px;
+}
+
+.contact-form-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Contact info cards grid */
+.contact-info-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.info-card {
+    padding: 40px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+}
+
+.info-card-title {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.info-card-link {
+    font-size: 16px;
+    color: var(--color-sage);
+    transition: color 0.3s ease;
+}
+
+.info-card-link:hover {
+    color: var(--color-dark-grey);
+}
+
+.info-card-text {
+    font-size: 15px;
+    color: var(--color-light-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.form-input,
+.form-textarea {
+    font-size: 15px;
+    padding: 15px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-sage);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+
+
+/* Success message */
+.form-success-message {
+    padding: 40px;
+    background-color: rgba(139, 157, 131, 0.1);
+    border: 1px solid var(--color-sage);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-success-message h3 {
+    color: var(--color-sage);
+    margin-bottom: 10px;
+}
+
+.form-success-message p {
+    color: var(--color-sage);
+}
+
+/* 
+========================================
+FOOTER
+========================================
+*/
+.main-footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: var(--color-dark-grey);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.footer-logo .logo-img {
+    height: 75%;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.social-links-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-link {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-social-link {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-dark-grey);
+}
+
+.contact-social-link:hover {
+    color: var(--color-sage);
+}
+
+.social-link:hover {
+    color: var(--color-sage);
+}
+
+.copyright {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+/* 
+========================================
+PLACEHOLDER IMAGES
+Creates visual placeholders for images
+========================================
+*/
+.placeholder-img {
+    background: linear-gradient(135deg, var(--color-beige) 0%, #ede8e2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-img::after {
+    content: 'Image Placeholder';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+/* 
+========================================
+RESPONSIVE DESIGN
+Mobile and tablet styles
+========================================
+*/
+
+/* Tablet */
+@media (max-width: 992px) {
+    .about-grid,
+    .contact-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .testimonials-grid,
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+        font-size: 48px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 30px;
+        gap: 25px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+    
+    .hero-bg {
+        background-position: center 30%;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .video-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .contact-info-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+}
